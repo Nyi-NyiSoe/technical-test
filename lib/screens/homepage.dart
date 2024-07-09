@@ -79,7 +79,7 @@ class Homepage extends StatelessWidget {
                       onTap: (){
                         // Handle category selection
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return ProductListPage(categoryName: snapshot.data![index].name,);
+                          return ProductListPage(categoryName: snapshot.data![index].name,url: snapshot.data![index].url,);
                         }));
                       },
                       child: Card(

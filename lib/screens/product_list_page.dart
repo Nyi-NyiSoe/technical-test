@@ -3,8 +3,9 @@ import 'package:technicaltest/utils/load_product.dart';
 import 'package:technicaltest/utils/product_card.dart';
 
 class ProductListPage extends StatelessWidget {
-  ProductListPage({super.key, required this.categoryName});
+  ProductListPage({super.key, required this.categoryName,required this.url});
   String categoryName;
+  String url;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class ProductListPage extends StatelessWidget {
               actions: [],
             ),
             body: FutureBuilder(
-              future: getProducts(categoryName),
+              future: getProducts(url),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
