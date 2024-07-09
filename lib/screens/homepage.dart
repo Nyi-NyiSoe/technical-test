@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:technicaltest/screens/product_list_page.dart';
 import 'package:technicaltest/utils/shimmer_view.dart';
 
 import '../utils/load_category.dart';
@@ -71,9 +72,20 @@ class Homepage extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(snapshot.data![index].name),
+                    return InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      highlightColor: Colors.blue.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: (){
+                        // Handle category selection
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return ProductListPage();
+                        }));
+                      },
+                      child: Card(
+                        child: ListTile(
+                          title: Text(snapshot.data![index].name),
+                        ),
                       ),
                     );
                   },
