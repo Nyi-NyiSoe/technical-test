@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:technicaltest/screens/product_detail_page.dart';
 import 'package:technicaltest/utils/load_product.dart';
 import 'package:technicaltest/utils/product_card_large.dart';
 import 'package:technicaltest/utils/product_card_small.dart';
 
 class ProductListPage extends StatelessWidget {
- const ProductListPage({super.key, required this.categoryName, required this.url});
+  const ProductListPage(
+      {super.key, required this.categoryName, required this.url});
   final String categoryName;
   final String url;
 
@@ -35,16 +37,30 @@ class ProductListPage extends StatelessWidget {
                         ),
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return ProductCardLarge(
-                              product: snapshot.data![index]);
+                          return InkWell(
+                            onTap: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ProductDetailPage(
+                                  product: snapshot.data![index]);
+                            })),
+                            child: ProductCardLarge(
+                                product: snapshot.data![index]),
+                          );
                         },
                       );
                     } else {
                       return ListView.builder(
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return ProductCardSmall(
-                              product: snapshot.data![index]);
+                          return InkWell(
+                            onTap: () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ProductDetailPage(
+                                  product: snapshot.data![index]);
+                            })),
+                            child: ProductCardSmall(
+                                product: snapshot.data![index]),
+                          );
                         },
                       );
                     }

@@ -17,7 +17,7 @@ class Product {
   final String? availableStatus;
   final List<dynamic>? reviews;
   final String? returnPolicy;
-  final String? minimumOrderQuantity;
+  final int? minimumOrderQuantity;
   final Map<String, dynamic>? meta;
   final List<dynamic>? imageUrl;
   final String? thumbnailUrl;
@@ -52,9 +52,15 @@ class Product {
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       category: json['category'] ?? '',
-      price: json['price'] ?? 0.0,
-      discountPercentage: json['discount_percentage'] ?? 0.0,
-      rating: json['rating'] ?? 0.0,
+      price: (json['price'] is int)
+          ? (json['price'] as int).toDouble()
+          : json['price'] ?? 0.0,
+      discountPercentage: (json['discountPercentage'] is int)
+          ? (json['discountPercentage'] as int).toDouble()
+          : json['discountPercentage'] ?? 0.0,
+      rating: (json['rating'] is int)
+          ? (json['rating'] as int).toDouble()
+          : json['rating'] ?? 0.0,
       stock: json['stock'] ?? 0,
       tags: List<String>.from(json['tags']) ?? [],
       brand: json['brand'] ?? '',
@@ -65,12 +71,12 @@ class Product {
       dimensions: json['dimensions'].map<dynamic, dynamic>(
               (key, value) => MapEntry(key, value.toDouble())) ??
           {},
-      warrantyInfo: json['warranty_info'] ?? '',
-      shippingInfo: json['shipping_info'] ?? '',
-      availableStatus: json['available_status'] ?? '',
+      warrantyInfo: json['warrantyInformation'] ?? '',
+      shippingInfo: json['shippingInformation'] ?? '',
+      availableStatus: json['availabilityStatus'] ?? '',
       reviews: List<dynamic>.from(json['reviews']) ?? [],
-      returnPolicy: json['return_policy'] ?? '',
-      minimumOrderQuantity: json['minimum_order_quantity'] ?? '',
+      returnPolicy: json['returnPolicy'] ?? '',
+      minimumOrderQuantity: json['minimumOrderQuantity'] ?? 0,
       meta: Map<String, String>.from(json['meta']) ?? {},
       imageUrl: List<dynamic>.from(json['images']) ?? [],
       thumbnailUrl: json['thumbnail'] ?? '',
