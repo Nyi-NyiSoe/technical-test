@@ -4,9 +4,9 @@ import 'package:technicaltest/utils/product_card_large.dart';
 import 'package:technicaltest/utils/product_card_small.dart';
 
 class ProductListPage extends StatelessWidget {
-  ProductListPage({super.key, required this.categoryName, required this.url});
-  String categoryName;
-  String url;
+ const ProductListPage({super.key, required this.categoryName, required this.url});
+  final String categoryName;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
