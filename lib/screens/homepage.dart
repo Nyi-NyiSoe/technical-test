@@ -65,7 +65,7 @@ class Homepage extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return ListView.builder(itemBuilder: (context, index) {
                 return const ShimmerView();
-              })  ;
+              });
             } else {
               return Padding(
                 padding: const EdgeInsets.all(10),
@@ -76,10 +76,14 @@ class Homepage extends StatelessWidget {
                       splashColor: Colors.blue.withAlpha(30),
                       highlightColor: Colors.blue.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10),
-                      onTap: (){
+                      onTap: () {
                         // Handle category selection
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return ProductListPage(categoryName: snapshot.data![index].name,url: snapshot.data![index].url,);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return ProductListPage(
+                            categoryName: snapshot.data![index].name,
+                            url: snapshot.data![index].url,
+                          );
                         }));
                       },
                       child: Card(
