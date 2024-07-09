@@ -11,7 +11,7 @@ Future<List<Product>> getProducts(String productName) async {
     final response = await client.get(Uri.parse(url + productName));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      productList = List<Product>.from(data.map((x) => Product.fromJson(x)));
+      productList = List<Product>.from(data['products'].map((x) => Product.fromJson(x)));
       
       return productList;
     } else {
