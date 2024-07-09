@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:technicaltest/utils/shimmer_view.dart';
 
 import '../utils/load_category.dart';
 
@@ -61,7 +62,9 @@ class Homepage extends StatelessWidget {
           future: getCategories(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return ListView.builder(itemBuilder: (context, index) {
+                return const ShimmerView();
+              })  ;
             } else {
               return Padding(
                 padding: const EdgeInsets.all(10),
