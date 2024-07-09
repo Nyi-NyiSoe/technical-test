@@ -24,7 +24,7 @@ class ProductListPage extends StatelessWidget {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(snapshot.data![index].title),
+                        title: Text(snapshot.data![index].title!),
                       );
                     },
                   );
