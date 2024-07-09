@@ -11,7 +11,9 @@ class ProductCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+         
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

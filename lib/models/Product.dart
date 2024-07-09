@@ -19,7 +19,7 @@ class Product {
   final String? returnPolicy;
   final String? minimumOrderQuantity;
   final Map<String, dynamic>? meta;
-  final String? imageUrl;
+  final List<dynamic>? imageUrl;
   final String? thumbnailUrl;
 
   Product(
@@ -48,7 +48,7 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'] ?? 0 ,
+      id: json['id'] ?? 0,
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       category: json['category'] ?? '',
@@ -63,16 +63,17 @@ class Product {
           ? (json['weight'] as int).toDouble()
           : json['weight'] ?? 0.0,
       dimensions: json['dimensions'].map<dynamic, dynamic>(
-          (key, value) => MapEntry(key, value.toDouble())) ?? {},
-      warrantyInfo: json['warranty_info'] ?? '', 
+              (key, value) => MapEntry(key, value.toDouble())) ??
+          {},
+      warrantyInfo: json['warranty_info'] ?? '',
       shippingInfo: json['shipping_info'] ?? '',
       availableStatus: json['available_status'] ?? '',
       reviews: List<dynamic>.from(json['reviews']) ?? [],
-      returnPolicy: json['return_policy']   ?? '',
+      returnPolicy: json['return_policy'] ?? '',
       minimumOrderQuantity: json['minimum_order_quantity'] ?? '',
       meta: Map<String, String>.from(json['meta']) ?? {},
-      imageUrl: json['image_url'] ?? '',
-      thumbnailUrl: json['thumbnail_url'] ?? '',
+      imageUrl: List<dynamic>.from(json['images']) ?? [],
+      thumbnailUrl: json['thumbnail'] ?? '',
     );
   }
 }
