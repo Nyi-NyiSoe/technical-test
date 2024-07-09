@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:technicaltest/utils/load_product.dart';
+import 'package:technicaltest/utils/product_card.dart';
 
 class ProductListPage extends StatelessWidget {
   ProductListPage({super.key, required this.categoryName});
@@ -23,9 +24,7 @@ class ProductListPage extends StatelessWidget {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(snapshot.data![index].title!),
-                      );
+                      return ProductCard(product: snapshot.data![index]);
                     },
                   );
                 }
