@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:technicaltest/screens/cartpage.dart';
 import 'package:technicaltest/screens/product_detail_page.dart';
 import 'package:technicaltest/utils/load_product.dart';
 import 'package:technicaltest/widgets/change_theme.dart';
@@ -22,7 +23,18 @@ class ProductListPage extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                   "$categoryName ${AppLocalizations.of(context)!.products}"),
-              actions: [changeTheme()],
+              actions: [
+                changeTheme(),
+                IconButton(
+                  icon: const Icon(Icons.shopping_cart),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartPage()));
+                  },
+                ),
+              ],
             ),
             body: FutureBuilder(
               future: getProducts(url),
