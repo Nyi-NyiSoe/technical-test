@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:technicaltest/models/Product.dart';
+import 'package:technicaltest/utils/change_theme.dart';
 import 'package:technicaltest/utils/custom_image_builder.dart';
+
 class ProductDetailPage extends StatelessWidget {
   final Product product;
   const ProductDetailPage({super.key, required this.product});
@@ -11,7 +13,9 @@ class ProductDetailPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          actions: [
+            changeTheme()
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -23,7 +27,8 @@ class ProductDetailPage extends StatelessWidget {
                   child: CarouselSlider.builder(
                       itemCount: product.imageUrl!.length,
                       itemBuilder: (context, index, realIndex) {
-                        return CustomImageBuilder(url: product.imageUrl![index]);
+                        return CustomImageBuilder(
+                            url: product.imageUrl![index]);
                       },
                       options: CarouselOptions(
                         autoPlay: false,
@@ -41,4 +46,3 @@ class ProductDetailPage extends StatelessWidget {
     );
   }
 }
-

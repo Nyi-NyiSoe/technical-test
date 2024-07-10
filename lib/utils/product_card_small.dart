@@ -12,6 +12,7 @@ class ProductCardSmall extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
+        elevation: 3,
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
           children: [

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/screens/product_list_page.dart';
-import 'package:technicaltest/utils/language_provider.dart';
+import 'package:technicaltest/utils/change_theme.dart';
+import 'package:technicaltest/utils/providers.dart';
 import 'package:technicaltest/utils/shimmer_view.dart';
 
 import '../utils/load_category.dart';
@@ -18,9 +19,6 @@ class Homepage extends StatelessWidget {
           child: ListView(
             children: [
               const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
                 child: Column(children: [
                   CircleAvatar(
                     radius: 50,
@@ -58,8 +56,10 @@ class Homepage extends StatelessWidget {
         ),
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.categories),
-          backgroundColor: Colors.blue,
-          actions: [],
+          actions: [
+            changeTheme(),
+           
+          ],
         ),
         body: FutureBuilder(
           future: getCategories(),
@@ -150,7 +150,6 @@ void _showLanguageOptions(BuildContext context) {
                   Navigator.pop(context);
                 },
               ),
-              // Add more languages as needed
             ],
           );
         },
