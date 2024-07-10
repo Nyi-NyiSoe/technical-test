@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/screens/product_list_page.dart';
+import 'package:technicaltest/utils/language_provider.dart';
 import 'package:technicaltest/utils/shimmer_view.dart';
 
 import '../utils/load_category.dart';
@@ -24,38 +27,37 @@ class Homepage extends StatelessWidget {
                     backgroundImage: NetworkImage(
                         'https://www.w3schools.com/w3images/avatar2.png'),
                   ),
-                  Text('Nyi Nyi Soe', style: TextStyle(fontSize: 20)),
+                  Expanded(
+                      child:
+                          Text('Nyi Nyi Soe', style: TextStyle(fontSize: 20))),
                 ]),
               ),
               ListTile(
-                title: const Text('Home'),
+                leading: const Icon(Icons.category_outlined),
+                title: Text(AppLocalizations.of(context)!.categories),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: const Text('Categories'),
+                leading: const Icon(Icons.add_shopping_cart_outlined),
+                title: Text(AppLocalizations.of(context)!.cart),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                title: const Text('Languages'),
+                leading: const Icon(Icons.language_outlined),
+                title: Text(AppLocalizations.of(context)!.language),
                 onTap: () {
                   _showLanguageOptions(context);
-                },
-              ),
-              ListTile(
-                title: const Text('Logout'),
-                onTap: () {
-                  Navigator.pop(context);
                 },
               ),
             ],
           ),
         ),
         appBar: AppBar(
-          title: const Text('C a t e g o r i e s'),
+          title: Text(AppLocalizations.of(context)!.categories),
           backgroundColor: Colors.blue,
           actions: [],
         ),
@@ -107,45 +109,52 @@ void _showLanguageOptions(BuildContext context) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return SafeArea(
-        child: Wrap(
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: const Text('English'),
-              onTap: () {
-                // Handle language change to English
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: const Text('Español'),
-              onTap: () {
-                // Handle language change to Spanish
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: const Text('Thai'),
-              onTap: () {
-                // Handle language change to Spanish
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: const Text('Japanese'),
-              onTap: () {
-                // Handle language change to Spanish
-                Navigator.pop(context);
-              },
-            ),
-            // Add more languages as needed
-          ],
-        ),
-      );
+      return SafeArea(child: Consumer(
+        builder: (context, ref, child) {
+          final language = ref.read(languageProvider.notifier);
+          return Wrap(
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('English'),
+                onTap: () {
+                  // Handle language change to English
+                  language.state = 'en';
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('Español'),
+                onTap: () {
+                  // Handle language change to Spanish
+                  language.state = 'es';
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('Thai'),
+                onTap: () {
+                  // Handle language change to Spanish
+                  language.state = 'th';
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('Japanese'),
+                onTap: () {
+                  // Handle language change to Spanish
+                  language.state = 'ja';
+                  Navigator.pop(context);
+                },
+              ),
+              // Add more languages as needed
+            ],
+          );
+        },
+      ));
     },
   );
 }

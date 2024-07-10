@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:technicaltest/screens/product_detail_page.dart';
 import 'package:technicaltest/utils/load_product.dart';
 import 'package:technicaltest/utils/product_card_large.dart';
 import 'package:technicaltest/utils/product_card_small.dart';
-
 class ProductListPage extends StatelessWidget {
   const ProductListPage(
       {super.key, required this.categoryName, required this.url});
@@ -15,7 +15,7 @@ class ProductListPage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text('$categoryName Products'),
+              title: Text("$categoryName ${AppLocalizations.of(context)!.products}" ),
               backgroundColor: Colors.blue,
               actions: [],
             ),
