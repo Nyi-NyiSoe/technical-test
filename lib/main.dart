@@ -12,7 +12,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return  Consumer(builder: (context, ref, child) {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         theme: theme,
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        
         locale: Locale(language),
         localizationsDelegates: const [
           AppLocalizations.delegate,

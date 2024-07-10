@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/models/Product.dart';
+import 'package:technicaltest/utils/cart_provider.dart';
 import 'package:technicaltest/utils/custom_toast.dart';
-import 'package:technicaltest/widgets/cart_provider.dart';
 
 class HandleItemButton extends StatelessWidget {
   const HandleItemButton({
@@ -20,8 +21,7 @@ class HandleItemButton extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              showToast(
-                  "Function to be implimented in future updates", Colors.red);
+              showToast(AppLocalizations.of(context)!.toastmsg, Colors.red);
             },
             icon: const Icon(Icons.share_outlined),
           ),
@@ -32,11 +32,11 @@ class HandleItemButton extends StatelessWidget {
                   builder: (context) {
                     return AlertDialog(
                       title: Text(
-                        'Add to Cart',
+                        AppLocalizations.of(context)!.addtocart,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       content: Text(
-                        'Do you want to add to cart?',
+                        AppLocalizations.of(context)!.addConfirm,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                       actions: [
@@ -57,7 +57,9 @@ class HandleItemButton extends StatelessWidget {
                                       ref
                                           .read(cartProvider.notifier)
                                           .addToCart(product);
-                                      showToast('Successfully added to cart!',
+                                      showToast(
+                                          AppLocalizations.of(context)!
+                                              .addConfirmed,
                                           Colors.green);
                                       Navigator.pop(context);
                                     },
@@ -74,11 +76,10 @@ class HandleItemButton extends StatelessWidget {
             style: TextButton.styleFrom(
                 backgroundColor: Theme.of(context).secondaryHeaderColor),
             onPressed: () {
-              showToast(
-                  "Function to be implimented in future updates", Colors.red);
+              showToast(AppLocalizations.of(context)!.toastmsg, Colors.red);
             },
-            child:
-                Text('Buy Now', style: Theme.of(context).textTheme.labelMedium),
+            child: Text(AppLocalizations.of(context)!.buyNow,
+                style: Theme.of(context).textTheme.labelMedium),
           )
         ],
       );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:technicaltest/models/Product.dart';
 import 'package:technicaltest/widgets/custom_carousel.dart';
 import 'package:technicaltest/widgets/handleItemButton.dart';
 import 'package:technicaltest/widgets/review_widget.dart';
-
 class ProductDetailLarge extends StatelessWidget {
   const ProductDetailLarge(
       {super.key, required this.product, required this.productDetailsCards});
@@ -41,7 +41,7 @@ class ProductDetailLarge extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Product Description'),
+                  child: Text(AppLocalizations.of(context)!.description),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -51,7 +51,7 @@ class ProductDetailLarge extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Product Specifications',
+              child: Text(AppLocalizations.of(context)!.specifications,
                   style: Theme.of(context)
                       .textTheme
                       .labelLarge!
@@ -70,7 +70,7 @@ class ProductDetailLarge extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Reviews'),
+              child: Text(AppLocalizations.of(context)!.reviews),
             ),
             Column(
               children: product.reviews!

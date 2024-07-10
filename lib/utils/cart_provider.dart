@@ -24,15 +24,19 @@ class CartNotifier extends StateNotifier<List<CartItem>> {
 
   void deleteFromCart(Product product) {
     if (state.any((item) => item.product.id == product.id)) {
-      state = state.map((item) {
-        if (item.product.id == product.id && item.quantity > 1) {
-          return CartItem(product: item.product, quantity: item.quantity - 1);
+      List<CartItem> newState = [];
+      state.forEach((item) {
+        if (item.product.id == product.id) {
+          if (item.quantity > 1) {
+            newState.add(
+                CartItem(product: item.product, quantity: item.quantity - 1));
+          }
+        } else {
+          newState.add(item);
         }
-        return item;
-      }).toList();
-      return;
+      });
+      state = newState;
     }
-    state = [...state, CartItem(product: product)];
   }
 
   void removeFromCart(Product product) {

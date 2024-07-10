@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:technicaltest/models/Product.dart';
 import 'package:technicaltest/widgets/custom_carousel.dart';
 import 'package:technicaltest/widgets/review_widget.dart';
@@ -24,15 +25,18 @@ class ProductDetailSmall extends StatelessWidget {
             product.title!,
           ),
         ),
-        const TabBar(
+        TabBar(
           tabs: [
             Tab(
-              child: Text('Description', style: TextStyle(fontSize: 15)),
+              child: Text(AppLocalizations.of(context)!.description,
+                  style: const TextStyle(fontSize: 15)),
             ),
             Tab(
-                child: Text('Specifications',
-                    style: TextStyle(fontSize: 15))),
-            Tab(child: Text('Reviews', style: TextStyle(fontSize: 15))),
+                child: Text(AppLocalizations.of(context)!.specifications,
+                    style:const TextStyle(fontSize: 15))),
+            Tab(
+                child: Text(AppLocalizations.of(context)!.reviews,
+                    style:const TextStyle(fontSize: 15))),
           ],
         ),
         Expanded(
@@ -45,7 +49,7 @@ class ProductDetailSmall extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('About this item',
+                    Text(AppLocalizations.of(context)!.aboutItem,
                         style: Theme.of(context)
                             .textTheme
                             .labelLarge!
@@ -64,9 +68,7 @@ class ProductDetailSmall extends StatelessWidget {
                           .map((tag) => Chip(
                                   label: Text(
                                 tag,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium,
+                                style: Theme.of(context).textTheme.labelMedium,
                               )))
                           .toList(),
                     ),
