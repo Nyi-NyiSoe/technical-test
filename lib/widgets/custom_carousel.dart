@@ -22,24 +22,22 @@ class CustomCarouselImage extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.3,
-              child: Card(
-                child: CarouselSlider.builder(
-                  itemCount: product.imageUrl!.length,
-                  itemBuilder: (context, index, realIndex) {
-                    return CustomImageBuilder(
-                      url: product.imageUrl![index],
-                    );
+              child: CarouselSlider.builder(
+                itemCount: product.imageUrl!.length,
+                itemBuilder: (context, index, realIndex) {
+                  return CustomImageBuilder(
+                    url: product.imageUrl![index],
+                  );
+                },
+                options: CarouselOptions(
+                  onPageChanged: (index, reason) {
+                    ref.read(imagCountProvider.notifier).state = index + 1;
                   },
-                  options: CarouselOptions(
-                    onPageChanged: (index, reason) {
-                      ref.read(imagCountProvider.notifier).state = index + 1;
-                    },
-                    autoPlay: false,
-                    enableInfiniteScroll: false,
-                    enlargeCenterPage: true,
-                    aspectRatio: 16 / 9,
-                    autoPlayInterval: const Duration(seconds: 3),
-                  ),
+                  autoPlay: false,
+                  enableInfiniteScroll: false,
+                  enlargeCenterPage: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayInterval: const Duration(seconds: 3),
                 ),
               )),
           Positioned(
