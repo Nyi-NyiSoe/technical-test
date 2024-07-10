@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/screens/product_detail_page.dart';
 import 'package:technicaltest/widgets/cart_provider.dart';
@@ -14,7 +15,7 @@ class CartPage extends ConsumerWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('Cart'),
+              title:  Text(AppLocalizations.of(context)!.cart),
               actions: [
                 IconButton(
                     onPressed: () {
@@ -23,11 +24,11 @@ class CartPage extends ConsumerWidget {
                           builder: (context) {
                             return AlertDialog(
                               title: Text(
-                                'Delete Cart',
+                               AppLocalizations.of(context)!.deleteTitle ,
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               content: Text(
-                                'Are you sure you want to delete the cart?',
+                                AppLocalizations.of(context)!.deleteConfirm,
                                 style: Theme.of(context).textTheme.labelMedium,
                               ),
                               actions: [
@@ -62,8 +63,8 @@ class CartPage extends ConsumerWidget {
               ],
             ),
             body: cartItems.isEmpty
-                ? const Center(
-                    child: Text('No items in the cart'),
+                ?  Center(
+                    child: Text(AppLocalizations.of(context)!.emptyCart),
                   )
                 : LayoutBuilder(builder: (context, constraints) {
                     if (constraints.maxWidth > 600) {
