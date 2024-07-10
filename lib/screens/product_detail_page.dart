@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/models/Product.dart';
 import 'package:technicaltest/screens/cartpage.dart';
@@ -51,84 +52,93 @@ class ProductDetailPage extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Product Detail'),
+            title: Text(AppLocalizations.of(context)!.productDetails),
             actions: [
               changeTheme(),
               IconButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return const CartPage();
                     }));
-                  }, icon: const Icon(Icons.shopping_cart))
+                  },
+                  icon: const Icon(Icons.shopping_cart))
             ],
           ),
-          bottomSheet: Consumer(builder: (context,ref,child){
-            return  Container(
-            color: Theme.of(context).primaryColor,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: () {
-                   showToast("Function to be implimented in future updates", Colors.red);
-                  },
-                  icon: const Icon(Icons.share),
-                  color: Colors.white,
-                ),
-                IconButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text(
-                              'Add to Cart',
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            content: Text(
-                              'Do you want to add to cart?',
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          icon: const Icon(Icons.cancel)),
-                                      IconButton(
-                                          onPressed: () {
-                                            ref.read(cartProvider.notifier).addToCart(product);
-                                            showToast('Successfully added to cart!', Colors.green);
-                                            Navigator.pop(context);
-                                          },
-                                          icon: const Icon(Icons.check))
-                                    ],
-                                  ))
-                            ],
-                          );
-                        });
-                  },
-                  icon: const Icon(Icons.add_shopping_cart),
-                  color: Colors.white,
-                ),
-                TextButton(
-                  onPressed: () {
-                    showToast("Function to be implimented in future updates", Colors.red);
-                  },
-                  child: Text('Buy Now',
-                      style: Theme.of(context).textTheme.labelMedium),
-                )
-              ],
-            ),
-          );
+          bottomSheet: Consumer(builder: (context, ref, child) {
+            return Container(
+              color: Theme.of(context).primaryColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      showToast(
+                          AppLocalizations.of(context)!.toastmsg, Colors.red);
+                    },
+                    icon: const Icon(Icons.share),
+                    color: Colors.white,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(
+                                AppLocalizations.of(context)!.addtocart,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              content: Text(
+                                AppLocalizations.of(context)!.addConfirm,
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            icon: const Icon(Icons.cancel)),
+                                        IconButton(
+                                            onPressed: () {
+                                              ref
+                                                  .read(cartProvider.notifier)
+                                                  .addToCart(product);
+                                              showToast(
+                                                  AppLocalizations.of(context)!
+                                                      .addConfirmed,
+                                                  Colors.green);
+                                              Navigator.pop(context);
+                                            },
+                                            icon: const Icon(Icons.check))
+                                      ],
+                                    ))
+                              ],
+                            );
+                          });
+                    },
+                    icon: const Icon(Icons.add_shopping_cart),
+                    color: Colors.white,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      showToast(AppLocalizations.of(context)!.toastmsg,
+                          Colors.red);
+                    },
+                    child: Text(AppLocalizations.of(context)!.buyNow,
+                        style: Theme.of(context).textTheme.labelMedium),
+                  )
+                ],
+              ),
+            );
           }),
           body: Column(
             children: [
@@ -139,15 +149,18 @@ class ProductDetailPage extends StatelessWidget {
                   product.title!,
                 ),
               ),
-              const TabBar(
+              TabBar(
                 tabs: [
                   Tab(
-                    child: Text('Description', style: TextStyle(fontSize: 15)),
+                    child: Text(AppLocalizations.of(context)!.description,
+                        style: TextStyle(fontSize: 15)),
                   ),
                   Tab(
-                      child: Text('Specifications',
+                      child: Text(AppLocalizations.of(context)!.specifications,
                           style: TextStyle(fontSize: 15))),
-                  Tab(child: Text('Reviews', style: TextStyle(fontSize: 15))),
+                  Tab(
+                      child: Text(AppLocalizations.of(context)!.reviews,
+                          style: TextStyle(fontSize: 15))),
                 ],
               ),
               Expanded(
@@ -160,7 +173,7 @@ class ProductDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('About this item',
+                          Text(AppLocalizations.of(context)!.aboutItem,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelLarge!
