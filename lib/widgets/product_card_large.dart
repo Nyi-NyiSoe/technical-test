@@ -30,15 +30,14 @@ class ProductCardLarge extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Expanded(
-                  child: Center(
-                      child: Text(
-                product.title!,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-              ))),
+              child: Center(
+                  child: Text(
+                              product.title!,
+                              style: Theme.of(context)
+                .textTheme
+                .labelMedium!
+                .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                            )),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
