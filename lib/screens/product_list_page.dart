@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:technicaltest/screens/product_detail_page.dart';
-import 'package:technicaltest/utils/change_theme.dart';
 import 'package:technicaltest/utils/load_product.dart';
-import 'package:technicaltest/utils/product_card_large.dart';
-import 'package:technicaltest/utils/product_card_small.dart';
+import 'package:technicaltest/widgets/change_theme.dart';
+import 'package:technicaltest/widgets/product_card_large.dart';
+import 'package:technicaltest/widgets/product_card_small.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage(

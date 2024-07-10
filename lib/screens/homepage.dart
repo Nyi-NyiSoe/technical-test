@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/screens/product_list_page.dart';
-import 'package:technicaltest/utils/change_theme.dart';
 import 'package:technicaltest/utils/providers.dart';
-import 'package:technicaltest/utils/shimmer_view.dart';
+import 'package:technicaltest/widgets/change_theme.dart';
+import 'package:technicaltest/widgets/shimmer_view.dart';
 
 import '../utils/load_category.dart';
 

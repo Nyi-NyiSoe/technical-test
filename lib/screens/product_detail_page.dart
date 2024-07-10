@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:technicaltest/models/Product.dart';
-import 'package:technicaltest/utils/change_theme.dart';
-import 'package:technicaltest/utils/custom_carousel.dart';
+import 'package:technicaltest/widgets/change_theme.dart';
+import 'package:technicaltest/widgets/custom_carousel.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;

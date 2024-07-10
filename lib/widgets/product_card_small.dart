@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:technicaltest/models/Product.dart';
-import 'package:technicaltest/utils/custom_image_builder.dart';
+import 'package:technicaltest/widgets/custom_image_builder.dart';
 
 class ProductCardSmall extends StatelessWidget {
   final Product product;

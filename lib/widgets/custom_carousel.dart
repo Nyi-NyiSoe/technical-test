@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/models/Product.dart';
-import 'package:technicaltest/utils/custom_image_builder.dart';
 import 'package:technicaltest/utils/providers.dart';
+import 'package:technicaltest/widgets/custom_image_builder.dart';
 
 class CustomCarouselImage extends StatelessWidget {
   const CustomCarouselImage({
