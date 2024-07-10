@@ -63,7 +63,7 @@ class Product {
           : json['rating'] ?? 0.0,
       stock: json['stock'] ?? 0,
       tags: List<String>.from(json['tags']) ?? [],
-      brand: json['brand'] ?? '',
+      brand: json['brand'] ?? '-',
       sku: json['sku'] ?? '',
       weight: (json['weight'] is int)
           ? (json['weight'] as int).toDouble()
@@ -81,5 +81,32 @@ class Product {
       imageUrl: List<dynamic>.from(json['images']) ?? [],
       thumbnailUrl: json['thumbnail'] ?? '',
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'category': category,
+      'price': price,
+      'discount percentage': discountPercentage,
+      'rating': rating,
+      'stock': stock,
+      'tags': tags,
+      'brand': brand,
+      'sku': sku,
+      'weight': weight,
+      'dimensions': dimensions,
+      'warranty information': warrantyInfo,
+      'shipping information': shippingInfo,
+      'available status': availableStatus,
+      'reviews': reviews,
+      'return policy': returnPolicy,
+      'minimumOrder quantity': minimumOrderQuantity,
+      'meta': meta,
+      'images': imageUrl,
+      'thumbnail': thumbnailUrl,
+    };
   }
 }

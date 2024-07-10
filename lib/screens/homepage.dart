@@ -58,7 +58,6 @@ class Homepage extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.categories),
           actions: [
             changeTheme(),
-           
           ],
         ),
         body: FutureBuilder(

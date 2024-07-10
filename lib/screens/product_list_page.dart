@@ -5,6 +5,7 @@ import 'package:technicaltest/utils/change_theme.dart';
 import 'package:technicaltest/utils/load_product.dart';
 import 'package:technicaltest/utils/product_card_large.dart';
 import 'package:technicaltest/utils/product_card_small.dart';
+
 class ProductListPage extends StatelessWidget {
   const ProductListPage(
       {super.key, required this.categoryName, required this.url});
@@ -16,11 +17,9 @@ class ProductListPage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text("$categoryName ${AppLocalizations.of(context)!.products}" ),
-              
-              actions: [
-                changeTheme()
-              ],
+              title: Text(
+                  "$categoryName ${AppLocalizations.of(context)!.products}"),
+              actions: [changeTheme()],
             ),
             body: FutureBuilder(
               future: getProducts(url),

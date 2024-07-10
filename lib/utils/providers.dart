@@ -7,3 +7,5 @@ final languageProvider = StateProvider<String>((ref) => 'en');
 final themeProvider = StateProvider<ThemeData>((ref) => TAppTheme.lightTheme);
 
 final iconProvider = StateProvider<IconData>((ref) => Icons.sunny);
+
+final imagCountProvider = StateProvider<int>((ref) => 1); 
