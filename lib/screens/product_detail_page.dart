@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/models/Product.dart';
+import 'package:technicaltest/screens/cartpage.dart';
+import 'package:technicaltest/utils/custom_toast.dart';
+import 'package:technicaltest/widgets/cart_provider.dart';
 import 'package:technicaltest/widgets/change_theme.dart';
 import 'package:technicaltest/widgets/custom_carousel.dart';
 import 'package:technicaltest/widgets/review_widget.dart';
@@ -52,24 +55,22 @@ class ProductDetailPage extends StatelessWidget {
             actions: [
               changeTheme(),
               IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.shopping_cart))
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return const CartPage();
+                    }));
+                  }, icon: const Icon(Icons.shopping_cart))
             ],
           ),
-          bottomSheet: Container(
+          bottomSheet: Consumer(builder: (context,ref,child){
+            return  Container(
             color: Theme.of(context).primaryColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   onPressed: () {
-                    Fluttertoast.showToast(
-                        msg: "Function to be implimented in future updates",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
+                   showToast("Function to be implimented in future updates", Colors.red);
                   },
                   icon: const Icon(Icons.share),
                   color: Colors.white,
@@ -104,6 +105,8 @@ class ProductDetailPage extends StatelessWidget {
                                           icon: const Icon(Icons.cancel)),
                                       IconButton(
                                           onPressed: () {
+                                            ref.read(cartProvider.notifier).addToCart(product);
+                                            showToast('Successfully added to cart!', Colors.green);
                                             Navigator.pop(context);
                                           },
                                           icon: const Icon(Icons.check))
@@ -118,21 +121,15 @@ class ProductDetailPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Fluttertoast.showToast(
-                        msg: "Function to be implimented in future updates",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
+                    showToast("Function to be implimented in future updates", Colors.red);
                   },
                   child: Text('Buy Now',
                       style: Theme.of(context).textTheme.labelMedium),
                 )
               ],
             ),
-          ),
+          );
+          }),
           body: Column(
             children: [
               CustomCarouselImage(product: product),

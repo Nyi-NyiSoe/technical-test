@@ -5,6 +5,8 @@ import 'package:technicaltest/utils/load_product.dart';
 import 'package:technicaltest/widgets/change_theme.dart';
 import 'package:technicaltest/widgets/product_card_large.dart';
 import 'package:technicaltest/widgets/product_card_small.dart';
+import 'package:technicaltest/widgets/shimmer_gridView.dart';
+import 'package:technicaltest/widgets/shimmer_listView.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage(
@@ -14,6 +16,7 @@ class ProductListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -25,7 +28,25 @@ class ProductListPage extends StatelessWidget {
               future: getProducts(url),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return width > 600
+                      ? GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 300,
+                            childAspectRatio: 3 / 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            return const GridItemShimmer();
+                          },
+                        )
+                      : ListView.builder(
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            return const ListItemShimmer();
+                          });
                 } else {
                   return LayoutBuilder(builder: (context, constraints) {
                     if (constraints.maxWidth > 600) {
@@ -33,7 +54,7 @@ class ProductListPage extends StatelessWidget {
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 300,
-                          childAspectRatio: 3 / 2,
+                          childAspectRatio: 1,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
                         ),
