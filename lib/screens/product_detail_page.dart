@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:technicaltest/models/Product.dart';
 import 'package:technicaltest/widgets/change_theme.dart';
 import 'package:technicaltest/widgets/custom_carousel.dart';
+import 'package:technicaltest/widgets/review_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
 
-  const ProductDetailPage({Key? key, required this.product}) : super(key: key);
+  const ProductDetailPage({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,90 @@ class ProductDetailPage extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            actions: [changeTheme()],
+            title: Text('Product Detail'),
+            actions: [
+              changeTheme(),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.shopping_cart))
+            ],
+          ),
+          bottomSheet: Container(
+            color: Theme.of(context).primaryColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "Function to be implimented in future updates",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                  icon: const Icon(Icons.share),
+                  color: Colors.white,
+                ),
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                              'Add to Cart',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            content: Text(
+                              'Do you want to add to cart?',
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: const Icon(Icons.cancel)),
+                                      IconButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          icon: const Icon(Icons.check))
+                                    ],
+                                  ))
+                            ],
+                          );
+                        });
+                  },
+                  icon: const Icon(Icons.add_shopping_cart),
+                  color: Colors.white,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Fluttertoast.showToast(
+                        msg: "Function to be implimented in future updates",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  },
+                  child: Text('Buy Now',
+                      style: Theme.of(context).textTheme.labelMedium),
+                )
+              ],
+            ),
           ),
           body: Column(
             children: [
@@ -75,7 +160,14 @@ class ProductDetailPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text('About this item',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge!
+                                  .copyWith(fontSize: 18)),
                           Text(
                             product.description!,
                             style: Theme.of(context)
@@ -83,28 +175,20 @@ class ProductDetailPage extends StatelessWidget {
                                 .bodySmall!
                                 .copyWith(fontSize: 16),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('\$${product.price!.toStringAsFixed(2)}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium!
-                                        .copyWith(
-                                            fontSize: 15, color: Colors.green)),
-                                Text(
-                                    '${product.discountPercentage!.toStringAsFixed(2)}% off',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium!
-                                        .copyWith(
-                                            fontSize: 15, color: Colors.red)),
-                              ],
-                            ),
-                          )
+                          Wrap(
+                            spacing: 6.0,
+                            runSpacing: 6.0,
+                            children: product.tags!
+                                .map((tag) => Chip(
+                                        label: Text(
+                                      tag,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium,
+                                    )))
+                                .toList(),
+                          ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
@@ -119,26 +203,13 @@ class ProductDetailPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ListView(
+                        padding: const EdgeInsets.only(bottom: 80),
                         children: product.reviews!.map((review) {
-                          return Card(
-                            margin: const EdgeInsets.symmetric(vertical: 8.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            elevation: 5,
-                            child: ListTile(
-                              title: Text(
-                                review['reviewerName'],
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              subtitle: Text(review['comment']),
-                              trailing: const Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              ),
-                            ),
-                          );
+                          return ReviewWidget(
+                              rating: review['rating'],
+                              comment: review['comment'],
+                              date: review['date'],
+                              reviewerName: review['reviewerName']);
                         }).toList(),
                       ),
                     ),
@@ -152,5 +223,3 @@ class ProductDetailPage extends StatelessWidget {
     );
   }
 }
-
-

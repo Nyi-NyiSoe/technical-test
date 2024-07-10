@@ -32,7 +32,7 @@ class CustomCarouselImage extends StatelessWidget {
                   },
                   options: CarouselOptions(
                     onPageChanged: (index, reason) {
-                      ref.read(imagCountProvider.notifier).state = index +1;
+                      ref.read(imagCountProvider.notifier).state = index + 1;
                     },
                     autoPlay: false,
                     enableInfiniteScroll: false,
@@ -43,13 +43,49 @@ class CustomCarouselImage extends StatelessWidget {
                 ),
               )),
           Positioned(
+              bottom: 0,
+              child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: product.discountPercentage == 0
+                      ? Text(
+                          '\$${product.price!.toStringAsFixed(2)}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .copyWith(color: Colors.red),
+                        )
+                      : Row(
+                          children: [
+                            Text(
+                              '\$${(product.price! - (product.price! * product.discountPercentage! / 100)).toStringAsFixed(2)}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(color: Colors.red),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              '\$${product.price!.toStringAsFixed(2)}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(
+                                      decoration: TextDecoration.lineThrough,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
+                            ),
+                          ],
+                        ))),
+          Positioned(
             right: 0,
             bottom: 0,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: SizedBox(
                   child: Text(
-                '$imgCount/${product.imageUrl!.length},',style: Theme.of(context).textTheme.labelMedium,
+                '$imgCount/${product.imageUrl!.length}',
+                style: Theme.of(context).textTheme.labelMedium,
               )),
             ),
           )

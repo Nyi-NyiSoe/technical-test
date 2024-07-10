@@ -8,4 +8,4 @@ final themeProvider = StateProvider<ThemeData>((ref) => TAppTheme.lightTheme);
 
 final iconProvider = StateProvider<IconData>((ref) => Icons.sunny);
 
-final imagCountProvider = StateProvider<int>((ref) => 1); 
+final imagCountProvider = StateProvider.autoDispose<int>((ref) => 1);
