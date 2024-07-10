@@ -3,10 +3,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:technicaltest/models/Product.dart';
 import 'package:technicaltest/screens/cartpage.dart';
+import 'package:technicaltest/utils/custom_toast.dart';
+import 'package:technicaltest/widgets/cart_provider.dart';
 import 'package:technicaltest/widgets/change_theme.dart';
-import 'package:technicaltest/widgets/handleItemButton.dart';
-import 'package:technicaltest/widgets/product_detail_large.dart';
-import 'package:technicaltest/widgets/product_detail_small.dart';
+import 'package:technicaltest/widgets/custom_carousel.dart';
+import 'package:technicaltest/widgets/review_widget.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
