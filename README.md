@@ -1,3 +1,4 @@
 # technicaltest
 
-Code structure and UI will be improved in future commits with enough time.
+Project is being continued in ShopIt repo
+https://github.com/Nyi-NyiSoe/shopit
